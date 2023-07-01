@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.urls import reverse
 
 
 class Topic(models.Model):
@@ -14,7 +13,7 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.IntegerField(max_length=255)
+    years_of_experience = models.IntegerField(default='0')
 
     class Meta:
         verbose_name = "redactor"
@@ -32,7 +31,8 @@ class Newspaper(models.Model):
     context = models.TextField()
     published_date = models.DateField()
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    publishers = models.ManyToManyField(Redactor, related_name="redactors")
+    publishers = models.ManyToManyField(
+        Redactor, related_name="newspapers")
 
     def __str__(self):
         return self.title
