@@ -8,6 +8,10 @@
       {% for redactor in redactor_list %}
         <li>
           <a href=" {% url 'newspaper:redactor-detail' pk=redactor.id %}">{{ redactor.username }}</a>
+          ({{ redactor.first_name }} {{ redactor.last_name }})
+          {% if redactor.username == user.username %}
+            (Me)
+          {% endif %}
         </li>
 
       {% endfor %}
