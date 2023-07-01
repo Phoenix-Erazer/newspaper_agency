@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Redactor: {{ redactor.username }}</h1>
+  <p><strong>Fullname</strong>: {{ redactor.first_name }} {{ redactor.last_name }}</p>
+  <p><strong>Years of experience</strong>: {{ redactor.years_of_experience }}</p>
+  <div class="ml-3">
+    <h3>Newspapers:</h3>
+      <ul>
+        {% for newspaper in redactor.newspapers.all %}
+        <li>{{ newspaper.title }}</li>
+        {% empty %}
+          <p>No newspapers in redactor!</p>
+        {% endfor %}
+      </ul>
+  </div>
+{% endblock %}
