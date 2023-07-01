@@ -1,6 +1,6 @@
 <ul class="sidebar-nav">
   <li><a href="{% url 'newspaper:index' %}">Home page</a></li>
-  <li><a href="#">All topic</a></li>
-  <li><a href="#">All redactor</a></li>
-  <li><a href="#">All newspaper</a></li>
+  <li><a href="{% url 'newspaper:topic-list' %}">All topic</a></li>
+  <li><a href="{% url 'newspaper:redactor-list' %}#">All redactor</a></li>
+  <li><a href="{% url 'newspaper:newspaper-list' %}">All newspaper</a></li>
 </ul>
