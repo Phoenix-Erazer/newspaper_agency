@@ -1,22 +1,53 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
-    Topic List
+    Manufacturer List
     <a href="{% url 'newspaper:topic-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
   </h1>
 
-  {% if topic_list %}
-    <ul>
-      {% for topic in topic_list %}
-        <li>
-          {{ topic.name }}
-{#          <a href=" {% url 'newspaper:redactor-detail' pk=redactor.id %}">{{ redactor.username }}</a>#}
-        </li>
+  <form action="" method="get" class="form-inline">
+{#    {{ search_form|crispy }}#}
+    {{ search_form.as_p }}
+    <input type="submit" value="🔎">
+  </form>
 
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for topic in topic_list %}
+        <tr>
+          <td>
+              {{ topic.id }}
+          </td>
+          <td>
+              {{ topic.name }}
+          </td>
+          <td>
+              <a href="{% url 'newspaper:topic-update' pk=topic.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'newspaper:topic-delete' pk=topic.id %}">
+                Delete
+              </a>
+            </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
+
+  {% else %}
+      <p>There are no topics in the service.</p>
   {% endif %}
 {% endblock %}
