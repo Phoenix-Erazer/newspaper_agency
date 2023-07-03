@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import authenticate, login
@@ -81,6 +81,19 @@ class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
 class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("newspaper:newspaper-list")
+
+
+class NewspaperUpdateDriverView(LoginRequiredMixin, generic.View):
+    def post(self, request, *args, **kwargs):
+        newspaper = get_object_or_404(Newspaper, pk=kwargs["pk"])
+        redactor = request.user
+
+        if redactor in newspaper.publishers.all():
+            newspaper.publishers.remove(redactor)
+        else:
+            newspaper.publishers.add(redactor)
+
+        return redirect(newspaper.get_absolute_url())
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):

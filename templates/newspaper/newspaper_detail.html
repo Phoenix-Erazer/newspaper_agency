@@ -14,16 +14,14 @@
   <p>Topic: ({{ newspaper.topic.name }})</p>
   <h1>
     Redactor
-
-{#    {% if car in user.cars.all %}#}
-{#      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page">#}
-{#        Delete me from this newspaper#}
-{#      </a>#}
-{#    {% else %}#}
-{#      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success link-to-page">#}
-{#        Assign me from this newspaper#}
-{#      </a>#}
-{#    {% endif %}#}
+    <form action="{% url "newspaper:newspaper-update-driver" pk=newspaper.id %}" class="d-inline" method="post" novalidate>
+      {% csrf_token %}
+      {% if request.user in newspaper.publishers.all %}
+        <input type="submit" class="btn btn-danger link-to-page" value="Delete me from this newspaper" />
+      {% else %}
+        <input type="submit" class="btn btn-success link-to-page" value="Assign me to this newspaper" />
+      {% endif %}
+    </form>
 
   </h1>
   <hr>
