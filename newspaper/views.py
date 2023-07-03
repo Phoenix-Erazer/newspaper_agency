@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 
 from newspaper.forms import RedactorCreationForm, NewspaperForm
 from newspaper.models import Topic, Redactor, Newspaper
-# from .forms import RedactoLicenseUpdateForm
+from .forms import RedactorLicenseUpdateForm
 
 
 @login_required
@@ -100,12 +100,12 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = RedactorCreationForm
 
 
-# class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
-#     model = Redactor
-#     form_class = RedactoLicenseUpdateForm
-#     success_url = reverse_lazy("newspaper:redactor-list")
+class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Redactor
+    form_class = RedactorLicenseUpdateForm
+    success_url = reverse_lazy("newspaper:redactor-list")
 
 
 class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Redactor
-    success_url = reverse_lazy("")
+    success_url = reverse_lazy("newspaper:redactor-list")

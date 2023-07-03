@@ -33,7 +33,7 @@ class RedactorCreationForm(UserCreationForm):
         )
 
 
-# class RedactorLicenseUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = Redactor
-#         fields = ("years_of_experience",)
+class RedactorLicenseUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Redactor
+        fields = ("years_of_experience",)
