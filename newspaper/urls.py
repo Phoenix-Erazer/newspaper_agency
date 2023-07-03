@@ -15,6 +15,9 @@ from newspaper.views import (
     NewspaperDeleteView,
     RedactorListView,
     RedactorDetailView,
+    RedactorCreateView,
+    # RedactorLicenseUpdateForm,
+    RedactorDeleteView,
 )
 
 urlpatterns = [
@@ -65,7 +68,21 @@ urlpatterns = [
         RedactorDetailView.as_view(),
         name="redactor-detail"
     ),
-
+    path(
+        "redactors/create/",
+        RedactorCreateView.as_view(),
+        name="redactor-create"
+    ),
+    # path(
+    #     "redactors/<int:pk>/update/",
+    #     RedactorLicenseUpdateForm.as_view(),
+    #     name="redactor-update"
+    # ),
+    path(
+        "redactors/<int:pk>/delete/",
+        RedactorDeleteView.as_view(),
+        name="redactor-delete"
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 app_name = "newspaper"

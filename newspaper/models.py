@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 class Topic(models.Model):
@@ -13,7 +14,7 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.IntegerField(default='0')
+    years_of_experience = models.IntegerField(max_length=2, default='0')
 
     class Meta:
         verbose_name = "redactor"
@@ -23,8 +24,8 @@ class Redactor(AbstractUser):
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
-    # def get_absolute_url(self):
-    #     return reverse("newspaper:newspaper-detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("newspaper:redactor-detail", kwargs={"pk": self.pk})
 
 
 class Newspaper(models.Model):
@@ -37,3 +38,6 @@ class Newspaper(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("newspaper:newspaper-detail", kwargs={"pk": self.pk})

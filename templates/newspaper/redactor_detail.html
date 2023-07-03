@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Redactor: {{ redactor.username }}</h1>
+  <h1>
+    Username: {{ redactor.username }}
+    <a href="{% url 'newspaper:redactor-delete' pk=redactor.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+{#    <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}" class="btn btn-secondary link-to-page">#}
+{#      Update#}
+{#    </a>#}
+  </h1>
   <p><strong>Fullname</strong>: {{ redactor.first_name }} {{ redactor.last_name }}</p>
   <p><strong>Years of experience</strong>: {{ redactor.years_of_experience }}</p>
   <div class="ml-3">
