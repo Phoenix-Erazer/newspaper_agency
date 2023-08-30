@@ -1,11 +1,21 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Newspaper Deleted{% endblock title %}
 
 {% block content %}
-  <h1>Delete newspaper?</h1>
+    <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+          <h1>
+              Delete newspaper?
+          </h1>
+      </div>
+    </div>
+
   <form action="" method="post">
     {% csrf_token %}
-
     <input type="submit" value="Yes" class="btn btn-danger">
     <a href="{{ newspaper.get_absolute_url }}" class="btn btn-secondary">No</a>
   </form>
-{% endblock %}
+{% endblock content %}
