@@ -12,10 +12,11 @@
       </div>
     </div>
 
-  <form action="" method="post">
-    {% csrf_token %}
+    <form action="" method="post">
+      {% csrf_token %}
 
-    <input type="submit" value="Yes" class="btn btn-danger">
-    <a href="{{ redactor.get_absolute_url }}" class="btn btn-secondary">No</a>
-  </form>
+      <input type="submit" value="Yes" class="btn btn-danger">
+      <a href="{{ redactor.get_absolute_url }}" class="btn btn-secondary">No</a>
+    </form>
+  </div>
 {% endblock %}
