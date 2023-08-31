@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Redactor Form{% endblock title %}
+
+{% block content %}
+  {% csrf_token %}
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+          <h1>
+           {{ object|yesno:"Update, Create" }} Newspaper
+          </h1>
+      </div>
+    </div>
+    <div class="input-group input-group-outline mb-4">
+      <form action="" method="post" novalidate>
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input class="btn btn-primary" type="submit"  value="Submit">
+          <a href="../" class="btn btn-secondary">Cancel</a>
+        </form>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Newspaper Detail{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+              <h1>
+                {{ newspaper.title }}
+                <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-secondary link-to-page">
+                  Update
+                </a>
+
+                <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger link-to-page">
+                  Delete
+                </a>
+
+              </h1>
+              <p>Topic: ({{ newspaper.topic.name }})</p>
+              <h1>
+                Redactor
+                <form action="{% url "newspaper:newspaper-update-driver" pk=newspaper.id %}" class="d-inline" method="post" novalidate>
+                  {% csrf_token %}
+                  {% if request.user in newspaper.publishers.all %}
+                    <input type="submit" class="btn btn-danger link-to-page" value="Delete me from this newspaper" />
+                  {% else %}
+                    <input type="submit" class="btn btn-success link-to-page" value="Assign me to this newspaper" />
+                  {% endif %}
+                </form>
+
+              </h1>
+        </div>
+      </div>
+
+        <hr>
+        <ul>
+        {% for redactor in newspaper.publishers.all %}
+          <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }})</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

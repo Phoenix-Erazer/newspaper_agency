@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Topic List{% endblock title %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+          <h1>
+            Topic List
+            <a href="{% url 'newspaper:topic-create' %}" class="btn btn-primary link-to-page">
+              Create
+            </a>
+          </h1>
+      </div>
+    </div>
+
+    <div class="row justify-space-between py-2">
+      <div class="input-group input-group-dynamic">
+        <form action="" method="get" class="form-inline" >
+          {{ search_form|crispy }}
+          <input type="submit" value="🔎">
+        </form>
+      </div>
+    </div>
+
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+      </tr>
+      {% for topic in topic_list %}
+        <tr>
+          <td>
+              {{ topic.id }}
+          </td>
+          <td>
+              {{ topic.name }}
+          </td>
+          <td>
+              <a style="color: blue"
+                  href="{% url 'newspaper:topic-update' pk=topic.id %}">
+                Update
+              </a>
+          </td>
+          <td>
+            <a style="color: red"
+              href="{% url 'newspaper:topic-delete' pk=topic.id %}">
+              Delete
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no topics in the service.</p>
+  {% endif %}
+    {% include 'includes/pagination.html' %}
+  </div>
+{% endblock content %}
