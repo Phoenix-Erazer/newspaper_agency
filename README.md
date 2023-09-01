@@ -1,3 +1,10 @@
+# Newspaper agency
+
+Django project for managing newspaper and redactors in newspaper agency
+
+## Check it out!
+
+[Newspaper agency project deployed to Haroky](PASTE_LINL_HERE)
 
 ## Manual Build 
 
