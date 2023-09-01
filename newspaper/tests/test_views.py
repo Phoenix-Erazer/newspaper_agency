@@ -1,10 +1,12 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 
 from newspaper.models import Topic
 
 TOPIC_URL = reverse("newspaper:topic-list")
+NEWSPAPER_URL = reverse("newspaper:newspaper-list")
+REDACTOR_URL = reverse("newspaper:redactor-list")
 
 
 class PublicTopicTests(TestCase):
@@ -35,3 +37,17 @@ class PrivateTopicTests(TestCase):
             list(topic)
         )
         self.assertTemplateUsed(response, "newspaper/topic_list.html")
+
+
+class PublicNewspaperTests(TestCase):
+    def test_login_required(self):
+        res = self.client.get(NEWSPAPER_URL)
+
+        self.assertNotEqual(res.status_code, 200)
+
+
+class PublicRedactorsTests(TestCase):
+    def test_login_required(self):
+        res = self.client.get(REDACTOR_URL)
+
+        self.assertNotEqual(res.status_code, 200)
