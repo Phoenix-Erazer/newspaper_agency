@@ -21,7 +21,7 @@
               <p>Topic: ({{ newspaper.topic.name }})</p>
               <h1>
                 Redactor
-                <form action="{% url "newspaper:newspaper-update-driver" pk=newspaper.id %}" class="d-inline" method="post" novalidate>
+                <form action="{% url "newspaper:newspaper-update-redactor" pk=newspaper.id %}" class="d-inline" method="post" novalidate>
                   {% csrf_token %}
                   {% if request.user in newspaper.publishers.all %}
                     <input type="submit" class="btn btn-danger link-to-page" value="Delete me from this newspaper" />

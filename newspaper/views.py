@@ -129,7 +129,7 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class NewspaperUpdateDriverView(LoginRequiredMixin, generic.View):
+class NewspaperUpdateRedactorView(LoginRequiredMixin, generic.View):
     def post(self, request, *args, **kwargs):
         newspaper = get_object_or_404(Newspaper, pk=kwargs["pk"])
         redactor = request.user

@@ -13,7 +13,7 @@ from newspaper.views import (
     NewspaperCreateView,
     NewspaperUpdateView,
     NewspaperDeleteView,
-    NewspaperUpdateDriverView,
+    NewspaperUpdateRedactorView,
     RedactorListView,
     RedactorDetailView,
     RedactorCreateView,
@@ -60,9 +60,9 @@ urlpatterns = [
     path("newspapers/<int:pk>/update/", NewspaperUpdateView.as_view(), name="newspaper-update"),
     path("newspapers/<int:pk>/delete/", NewspaperDeleteView.as_view(), name="newspaper-delete"),
     path(
-        "newspapers/<int:pk>/update-driver/",
-        NewspaperUpdateDriverView.as_view(),
-        name="newspaper-update-driver"
+        "newspapers/<int:pk>/update-redactor/",
+        NewspaperUpdateRedactorView.as_view(),
+        name="newspaper-update-redactor"
     ),
     path(
         "redactors/",
