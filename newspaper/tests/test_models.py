@@ -10,22 +10,19 @@ class ModelsTests(TestCase):
             username="test",
             password="test12345",
             first_name="Test first name",
-            last_name="Test last name"
+            last_name="Test last name",
         )
         self.topic = Topic.objects.create(name="test")
 
     def test_topic_str(self):
-        self.assertEqual(
-            str(self.topic),
-            f"{self.topic.name}"
-        )
+        self.assertEqual(str(self.topic), f"{self.topic.name}")
 
     def test_redactor_str(self):
         self.assertEqual(
             str(self.redactor),
             f"{self.redactor.username} "
             f"({self.redactor.first_name} "
-            f"{self.redactor.last_name})"
+            f"{self.redactor.last_name})",
         )
 
     def test_newspaper_str(self):

@@ -1,10 +1,10 @@
 from django.test import TestCase
 
 from newspaper.forms import (
-    RedactorLicenseUpdateForm,
     RedactorCreationForm,
     NewspaperSearchForm,
-    TopicSearchForm, RedactorSearchForm
+    TopicSearchForm,
+    RedactorSearchForm,
 )
 
 
