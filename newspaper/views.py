@@ -5,8 +5,13 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import authenticate, login
 
-from newspaper.forms import RedactorCreationForm, NewspaperForm, NewspaperSearchForm, TopicSearchForm, \
-    RedactorSearchForm
+from newspaper.forms import (
+    RedactorCreationForm,
+    NewspaperForm,
+    NewspaperSearchForm,
+    TopicSearchForm,
+    RedactorSearchForm,
+)
 from newspaper.models import Topic, Redactor, Newspaper
 from .forms import RedactorLicenseUpdateForm
 
@@ -90,9 +95,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
 
         title = self.request.GET.get("title", "")
 
-        context["search_form"] = NewspaperSearchForm(initial={
-            "title": title
-        })
+        context["search_form"] = NewspaperSearchForm(initial={"title": title})
 
         return context
 
@@ -102,8 +105,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         form = NewspaperSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                title__icontains=form.cleaned_data["title"])
+            return queryset.filter(title__icontains=form.cleaned_data["title"])
 
         return queryset
 
