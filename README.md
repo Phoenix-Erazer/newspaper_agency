@@ -2,6 +2,11 @@
 
 ## Check it out!
 [Newspaper Agency Project deployed to Render](https://newspaper-agency-v299.onrender.com/)
+```bash
+login: user  
+password: user12345
+```
+
 
 ## Manual Build 
 
