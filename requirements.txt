@@ -8,6 +8,7 @@ Django==4.2.2
 django-crispy-forms==2.0
 export==0.2.1
 flake8==6.1.0
+gunicorn==21.2.0
 mccabe==0.7.0
 mypy-extensions==1.0.0
 packaging==23.1
