@@ -35,6 +35,12 @@ class RedactorCreationForm(UserCreationForm):
 
 
 class RedactorLicenseUpdateForm(forms.ModelForm):
+    MIN_YEAR_OF_EXPERIENCE = 0
+
+    years_of_experience = forms.IntegerField(
+        required=True, validators=[MinValueValidator(MIN_YEAR_OF_EXPERIENCE)]
+    )
+
     class Meta:
         model = Redactor
         fields = ("years_of_experience",)
